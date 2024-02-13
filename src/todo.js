@@ -11,6 +11,8 @@ export default class Todo {
     #priority;
     #notes;
     #checkList;
+    #isDone = false;
+    
     constructor(title, description, dueDate, priority, notes, checkList) {
         this.#title = title;
         this.#description = description;
@@ -19,6 +21,7 @@ export default class Todo {
         this.#notes = notes;
         this.#checkList = checkList || [];
     }
+
     getTitle() { return this.#title; }
     setTitle(title) { this.#title = title; }
 
@@ -39,19 +42,9 @@ export default class Todo {
     removeFromCheckList(task) { 
         this.#checkList = this.#checkList.filter(item => item.name !== task.name );
     }
-};
 
-// Helper class to create tasks for the checklist
-export class Task {
-    #name;
-    #isDone;
-    constructor(name) {
-        this.#name = name;
-        this.#isDone = false;
-    }
-    done() { this.#isDone = true; }
-    notDone() { this.#isDone = false; }
-    getTask() { return this.#name; }
-    setTask(name) { this.#name = name; }
     isDone() { return this.#isDone; }
-}
+    Done() { this.#isDone = true; }
+    notDone() { this.#isDone = false; }
+    
+};

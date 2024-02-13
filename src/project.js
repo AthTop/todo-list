@@ -7,10 +7,12 @@
 export default class Project {
     #name;
     #todoList;
+
     constructor(projectName = '') {
         this.#name = projectName;
         this.#todoList = [];
     }
+
     getName() { return this.#name; }
     setName(name) { this.#name = name; }
 
@@ -18,4 +20,5 @@ export default class Project {
     removeTodo(todo) { 
         this.#todoList = this.#todoList.filter(item => item.getTitle() !== todo.getTitle())
     }
+    
 };

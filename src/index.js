@@ -1,6 +1,7 @@
 import Task from "./task";
 import Todo from "./todo";
 import Project from "./project";
+import displayTodo from "./displayTodo";
 
 
 // project object
@@ -18,15 +19,16 @@ import Project from "./project";
 // use localStorage API to save data
 // 
 const task = new Task('wipe')
+const task2 = new Task('wash');
 task.done();
-const todo = new Todo('title', 'descr', 'date', 1, 'notes')
+const date = new Date('12-31-22');
+const todo = new Todo('title', 'descr', date, 1, 'notes')
 
-const project = new Project();
-project.addTodo(todo);
 todo.addToCheckList(task);
-console.log(project);
+todo.addToCheckList(task2);
 
+console.log(todo);
 
+const main = document.querySelector('main');
 
-console.log(project);
-
+main.append(displayTodo(todo));
