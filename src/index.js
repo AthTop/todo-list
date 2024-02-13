@@ -1,7 +1,7 @@
 import Task from "./task";
 import Todo from "./todo";
 import Project from "./project";
-import displayTodo from "./displayTodo";
+import displayProject from "./displayProject";
 
 
 // project object
@@ -24,11 +24,13 @@ task.done();
 const date = new Date('12-31-22');
 const todo = new Todo('title', 'descr', date, 1, 'notes')
 
+const project = new Project('project 1');
+
 todo.addToCheckList(task);
 todo.addToCheckList(task2);
 
-console.log(todo);
+project.addTodo(todo);
+console.log(project);
 
 const main = document.querySelector('main');
-
-main.append(displayTodo(todo));
+main.append(displayProject(project));

@@ -16,9 +16,10 @@ export default class Project {
     getName() { return this.#name; }
     setName(name) { this.#name = name; }
 
+    getTodos() { return this.#todoList; }
     addTodo(todo) { this.#todoList.push(todo); }
     removeTodo(todo) { 
         this.#todoList = this.#todoList.filter(item => item.getTitle() !== todo.getTitle())
     }
-    
+
 };

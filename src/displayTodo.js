@@ -1,7 +1,6 @@
 import { format } from "date-fns";
 import displayTasks from "./displayTasks";
 
-
 export default function displayTodo(todo) {
     const div = document.createElement('div');
     div.setAttribute('priority', todo.getPriority());
