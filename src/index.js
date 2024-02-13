@@ -1,4 +1,5 @@
-import Todo, { Task } from "./todo";
+import Task from "./task";
+import Todo from "./todo";
 import Project from "./project";
 
 
