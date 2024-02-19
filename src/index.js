@@ -23,14 +23,60 @@ const task2 = new Task('wash');
 task.done();
 const date = new Date('12-31-22');
 const todo = new Todo('title', 'descr', date, 1, 'notes')
+const todo2 = new Todo('title2', 'descr2', date, 1, 'notes2')
 
 const project = new Project('project 1');
+const project2 = new Project('project 2');
+
 
 todo.addToCheckList(task);
 todo.addToCheckList(task2);
 
+todo2.addToCheckList(task);
+todo2.addToCheckList(task2);
+
 project.addTodo(todo);
+project.addTodo(todo2)
+project2.addTodo(todo);
+project2.addTodo(todo2)
 console.log(project);
 
 const main = document.querySelector('main');
-main.append(displayProject(project));
+main.append(displayProject(project), displayProject(project2));
+
+// const expandBtn = document.querySelector('.expand-todo-button');
+// expandBtn.addEventListener('click', (e) => {
+//     if(expandBtn.parentElement.hasChildNodes()) {
+//         let children = expandBtn.parentElement.childNodes;
+//         for (const child of children) {
+//             console.log(child);
+//             if (child.classList.contains('hidden')) {
+//                 child.classList.remove('hidden');
+//             }
+//             if (!child.classList.contains('hidden')) {
+//                 child.classList.add('hidden');
+//             }
+//         }
+//     }
+// });
+
+main.addEventListener('click', (e) => {
+    if (e.target.classList.contains('expand-todo-button')) {
+        clickTodo(e.target);
+    };
+});
+
+function clickTodo(expandBtn) {
+        let children = expandBtn.parentElement.childNodes;
+        for (const child of children) {
+            if (child.classList.contains('hidden')) {
+                child.classList.remove('hidden');
+                child.classList.add('open');
+                continue;
+            }
+            if (child.classList.contains('open')) {
+                child.classList.remove('open');
+                child.classList.add('hidden');
+            }
+        }
+    }

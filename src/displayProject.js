@@ -6,6 +6,8 @@ export default function displayProject(project) {
     const projecTitle = document.createElement('p');
     projecTitle.classList.add('project-title');
     projecTitle.textContent = project.getName();
+    div.append(projecTitle);
+    // Get the ToDos for the project and call displayTodo to populate project with them
     const todos = project.getTodos();
     for (const todo of todos) {
         div.append(displayTodo(todo));

@@ -1,6 +1,6 @@
 export default function displayTasks(tasks) {
     const div = document.createElement('div');
-    div.classList.add('tasks');
+    div.classList.add('tasks', 'hidden');
     const ul = document.createElement('ul');
     for (const task of tasks) {
         const li = document.createElement('li');
