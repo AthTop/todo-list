@@ -20,8 +20,11 @@ export default function displayProject(project) {
 
 export function refreshDisplay(projects) {
     const main = document.querySelector('main');
-    main.innerHTML = '';
+    const projectsDiv = document.createElement('projects');
+    projectsDiv.id = 'projects-div';
+    projectsDiv.innerHTML = '';
     for (const project of projects) {
-        main.append(displayProject(project));
+        projectsDiv.appendChild(displayProject(project));
     };
+    main.appendChild(projectsDiv);
 }
