@@ -19,7 +19,7 @@ export default class Project {
     getTodos() { return this.#todoList; }
     addTodo(todo) { this.#todoList.push(todo); }
     removeTodo(todo) { 
-        this.#todoList = this.#todoList.filter(item => item.getTitle() !== todo.getTitle())
+        this.#todoList = this.#todoList.filter(item => item.getTitle() !== todo)
     }
 
 };
