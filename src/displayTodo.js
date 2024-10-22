@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import displayTasks from "./displayTasks";
-import { projects } from './index';
+import { projects } from './projectManager';
 
 export default function displayTodo(todo) {
     const div = document.createElement('div');

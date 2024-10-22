@@ -1,9 +1,8 @@
 import Task from "./task";
 import Todo from "./todo";
-import Project from "./project";
 import  { refreshDisplay } from "./displayProject";
 import { createDialog } from "./dialog";
-
+import { addProject } from './projectManager.js'
 
 // project object
 // should contain todos, could possibly be a list instead of object
@@ -28,7 +27,7 @@ import { createDialog } from "./dialog";
 
 // const project = new Project('project 1');
 // const project2 = new Project('project 2');
-export let projects = [];
+
 
 // todo.addToCheckList(task);
 // todo.addToCheckList(task2);
@@ -58,13 +57,9 @@ main.appendChild(newProjectBtn);
 
 function newProjectForm() {
     createDialog('new-project-dialog', 'Project Name', '', (newName) => {
-        const project = new Project(newName);
-        projects.push(project)
-        refreshDisplay(projects);
+        addProject(newName);
+        refreshDisplay();
     });
 }
 
-export function updateProjectName(project, newName) {
-    project.setName(newName);
-    refreshDisplay(projects);
-}
+

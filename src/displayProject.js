@@ -1,6 +1,6 @@
 import { createDialog } from "./dialog.js";
 import displayTodo from "./displayTodo";
-import { updateProjectName } from "./index.js";
+import { deleteProject, updateProjectName, getProjects } from "./projectManager.js";
 
 export default function displayProject(project, updateProjectName) {
     const div = document.createElement('div');
@@ -22,10 +22,22 @@ export default function displayProject(project, updateProjectName) {
     editNameBtn.addEventListener('click', () => showEditProjectForm(project));
     editNameBtn.classList.add("edit-project-button");
     div.appendChild(editNameBtn);
+    // Add a Delete button
+    const deleteProjectBtn = document.createElement('button');
+    deleteProjectBtn.textContent = 'X';
+    deleteProjectBtn.classList.add('delete-project-button');
+    deleteProjectBtn.addEventListener('click', () => {
+        if(confirm(`Are you sure you want to remove project ${project.getName()}?`)) {
+            deleteProject(project);
+            refreshDisplay();
+        }
+    });
+    div.appendChild(deleteProjectBtn);
     return div;
 }
 
-export function refreshDisplay(projects) {
+export function refreshDisplay() {
+    const projects = getProjects();
     const projectsDiv = document.querySelector('#projects-div');
     projectsDiv.innerHTML = '';
     for (const project of projects) {
