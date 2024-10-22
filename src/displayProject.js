@@ -1,5 +1,5 @@
-import { createDialog } from "./dialog.js";
 import displayTodo from "./displayTodo";
+import { showEditProjectForm } from "./formHandler.js";
 import { deleteProject, updateProjectName, getProjects } from "./projectManager.js";
 
 export default function displayProject(project, updateProjectName) {
@@ -45,8 +45,3 @@ export function refreshDisplay() {
     };
 }
 
-function showEditProjectForm(project) {
-    createDialog('edit-project-name', 'Edit Project Name', project.getName(), (newName) => {
-        updateProjectName(project, newName);
-    });
-}
