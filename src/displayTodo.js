@@ -32,7 +32,7 @@ export default function displayTodo(todo) {
     notes.textContent = `Notes: ${todo.getNotes()}`;
     
     // Call displaytasks to populate the checklist
-    const checklist = displayTasks(todo.getCheckList());
+    const checklist = displayTasks(todo);
 
     expandBtn.addEventListener('click', (e) => {
         expandTodo(e.target);
