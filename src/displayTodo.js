@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import displayTasks from "./displayTasks";
 import { getProjects } from './projectManager';
+import { newTaskForm } from "./formHandler";
 
 export default function displayTodo(todo) {
     const div = document.createElement('div');
@@ -39,7 +40,13 @@ export default function displayTodo(todo) {
     deleteBtn.addEventListener('click', (e) => {
         deleteTodo(e.target);
     })
-    div.append(title, description, dueDate, notes, checklist, editBtn, expandBtn, deleteBtn);
+    // New Task button
+    const newTaskBtn = document.createElement('button');
+    newTaskBtn.type = 'button';
+    newTaskBtn.textContent = 'New task';
+    newTaskBtn.classList.add('new-task-btn');
+    newTaskBtn.addEventListener('click', (e) => newTaskForm(todo))
+    div.append(title, description, dueDate, notes, checklist, editBtn, expandBtn, deleteBtn, newTaskBtn);
     return div;
 }
 

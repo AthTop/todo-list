@@ -1,5 +1,5 @@
 import Project from "./project";
-export let projects = [];
+let projects = [];
 
 export function addProject(name) {
     if (!name) throw new Error("Project name cannot be empty");
