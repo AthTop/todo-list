@@ -1,7 +1,8 @@
 import Task from "./task";
 import Todo from "./todo";
 import Project from "./project";
-import displayProject, { refreshDisplay } from "./displayProject";
+import  { refreshDisplay } from "./displayProject";
+import { createDialog } from "./dialog";
 
 
 // project object
@@ -44,67 +45,26 @@ export let projects = [];
 // refreshDisplay(projects);
 
 const main = document.querySelector('main');
-const newBookBtn = document.createElement('button');
-newBookBtn.textContent = 'New Project';
-newBookBtn.addEventListener('click', (e) => {
+const projectsDiv = document.createElement('div');
+projectsDiv.id = 'projects-div';
+main.appendChild(projectsDiv);
+const newProjectBtn = document.createElement('button');
+newProjectBtn.textContent = 'New Project';
+newProjectBtn.addEventListener('click', (e) => {
     newProjectForm();
-    const dialog = document.querySelector('dialog');
-    dialog.showModal();
 })
-main.appendChild(newBookBtn);
+main.appendChild(newProjectBtn);
 
 
 function newProjectForm() {
-    const dialog = document.createElement('dialog');
-    dialog.id = 'new-project-dialog';
-    
-    const form = document.createElement('form');
-    form.id = 'new-project-form';
-
-    const labelProjectName = document.createElement('label');
-    labelProjectName.setAttribute('for', 'project-name');
-    labelProjectName.textContent = 'Project Name';
-
-    const inputProjectName = document.createElement('input');
-    inputProjectName.setAttribute('type', 'text');
-    inputProjectName.setAttribute('name', 'project-name');
-    inputProjectName.id = 'project-name';
-    inputProjectName.required = true;
-
-    const buttonDiv = document.createElement('div');
-
-    const newProjectBtn = document.createElement('button');
-    newProjectBtn.type = 'submit';
-    newProjectBtn.id = 'new-project-btn';
-    newProjectBtn.textContent = 'Add Project';
-
-    const closeBtn = document.createElement('button');
-    closeBtn.type = 'button';
-    closeBtn.id = 'close-btn';
-    closeBtn.textContent = 'X';
-
-    form.appendChild(labelProjectName);
-    form.appendChild(inputProjectName);
-    buttonDiv.appendChild(newProjectBtn);
-    buttonDiv.appendChild(closeBtn);
-
-    dialog.appendChild(form);
-    dialog.appendChild(buttonDiv);
-
-    document.body.appendChild(dialog);
-
-    closeBtn.addEventListener('click', (e) => {
-        dialog.close();
-    })
-
-    newProjectBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        const projectName = document.getElementById('project-name').value;
-        const project = new Project(projectName);
-        projects.push(project);
+    createDialog('new-project-dialog', 'Project Name', '', (newName) => {
+        const project = new Project(newName);
+        projects.push(project)
         refreshDisplay(projects);
-        dialog.close();
-    })
+    });
+}
 
+export function updateProjectName(project, newName) {
+    project.setName(newName);
+    refreshDisplay(projects);
 }
