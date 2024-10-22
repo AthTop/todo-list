@@ -1,8 +1,8 @@
 import displayTodo from "./displayTodo";
-import { showEditProjectForm } from "./formHandler.js";
+import { newTodoForm, showEditProjectForm } from "./formHandler.js";
 import { deleteProject, updateProjectName, getProjects } from "./projectManager.js";
 
-export default function displayProject(project, updateProjectName) {
+export default function displayProject(project) {
     const div = document.createElement('div');
     div.classList.add('project');
     div.id = project.getName();
@@ -15,7 +15,6 @@ export default function displayProject(project, updateProjectName) {
     for (const todo of todos) {
         div.append(displayTodo(todo));
     };
-    div.setAttribute('data-tag', project);
     // Add an Edit project name button
     const editNameBtn = document.createElement('button');
     editNameBtn.textContent = "...";
@@ -33,6 +32,12 @@ export default function displayProject(project, updateProjectName) {
         }
     });
     div.appendChild(deleteProjectBtn);
+    // Add a new Todo button
+    const newTodoBtn = document.createElement('button');
+    newTodoBtn.textContent = 'Add Todo';
+    newTodoBtn.classList.add('new-todo-button');
+    newTodoBtn.addEventListener('click', (e) => newTodoForm(project))
+    div.appendChild(newTodoBtn);
     return div;
 }
 

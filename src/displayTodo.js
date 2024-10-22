@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import displayTasks from "./displayTasks";
-import { projects } from './projectManager';
+import { getProjects } from './projectManager';
 
 export default function displayTodo(todo) {
     const div = document.createElement('div');
@@ -66,7 +66,7 @@ function deleteTodo(todoBtn) {
     const todoId = todoDiv.getAttribute('data-id');
 
     todoDiv.remove();
-
+    const projects = getProjects();
     const project = projects.find(proj => proj.getName() === projectId);
 
     if (project) {

@@ -1,14 +1,11 @@
-import Task from "./task";
-import Todo from "./todo";
-import  { refreshDisplay } from "./displayProject";
-import { createDialog } from "./dialog";
-import { addProject } from './projectManager.js'
 
 // project object
 // should contain todos, could possibly be a list instead of object
 // default project on app start
 // ability to create new projects and name them 
 // choose which project to add todos to
+
+import { newProjectForm } from "./formHandler";
 
 // DOM stuff should be seperate, module to display projects and todos
 // should be able to view all projects
@@ -55,11 +52,6 @@ newProjectBtn.addEventListener('click', (e) => {
 main.appendChild(newProjectBtn);
 
 
-function newProjectForm() {
-    createDialog('new-project-dialog', 'Project Name', '', (newName) => {
-        addProject(newName);
-        refreshDisplay();
-    });
-}
+
 
 
