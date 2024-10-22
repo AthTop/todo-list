@@ -17,7 +17,7 @@ export default function displayProject(project) {
     };
     // Add an Edit project name button
     const editNameBtn = document.createElement('button');
-    editNameBtn.textContent = "...";
+    editNameBtn.textContent = 'Edit Project Name';
     editNameBtn.addEventListener('click', () => showEditProjectForm(project));
     editNameBtn.classList.add("edit-project-button");
     div.appendChild(editNameBtn);

@@ -1,13 +1,15 @@
 import { format } from "date-fns";
 import displayTasks from "./displayTasks";
 import { getProjects } from './projectManager';
-import { newTaskForm } from "./formHandler";
+import { newTaskForm, showEditProjectForm, showEditTodoForm } from "./formHandler";
 
 export default function displayTodo(todo) {
     const div = document.createElement('div');
     const editBtn = document.createElement('button');
     editBtn.classList.add('edit-todo-button');
-    editBtn.textContent = '...';
+    editBtn.textContent = 'Edit Todo'
+    editBtn.type = 'button';
+    editBtn.addEventListener('click', () => showEditTodoForm(todo));
     const expandBtn = document.createElement('button');
     expandBtn.classList.add('expand-todo-button');
     expandBtn.textContent = 'v';

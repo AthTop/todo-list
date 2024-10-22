@@ -24,7 +24,12 @@ export function createDialog(dialogId, title, inputs, onConfirm) {
         else {
             const inputField = document.createElement('input');
             inputField.type = input.type;
-            inputField.placeholder = input.placeholder;
+            if (input.value) {
+                inputField.value = input.value;
+            }
+            else {
+                inputField.placeholder = input.placeholder || '';
+            }
             inputField.required = input.required || false;
             inputField.name = input.name;
             label.appendChild(inputField);
