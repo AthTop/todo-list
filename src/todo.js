@@ -1,8 +1,4 @@
-// todo object
-// has a title, description, duedate, priority, notes and possibly a checklist
-// methods to manipulate its content
-// needs a get/set for title, description, due date, priority, the notes and the checklist
-// checklist is a list of objects with a title and a done true/false properties
+import Task from "./task";
 
 export default class Todo {
     #title;
@@ -47,4 +43,23 @@ export default class Todo {
     Done() { this.#isDone = true; }
     notDone() { this.#isDone = false; }
     
+    serialize() {
+        return {
+            title: this.#title,
+            description: this.#description,
+            dueDate: this.#dueDate,
+            priority: this.#priority,
+            notes: this.#notes,
+            isDone: this.#isDone,
+            checkList: this.#checkList.map(task => task.serialize())
+        };
+    }
+
+    static deserialize(data) {
+        const todo = new Todo(data.title, data.description, data.dueDate, data.priority, data.notes);
+        todo.#isDone = data.isDone;
+        todo.#checkList = data.checkList.map(taskData => Task.deserialize(taskData))
+        return todo;
+    }
+
 };

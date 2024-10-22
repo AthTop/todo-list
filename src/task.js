@@ -13,4 +13,16 @@ export default class Task {
     setTask(name) { this.#name = name; }
     isDone() { return this.#isDone; }
     
+    serialize () {
+        return {
+            name: this.#name, 
+            isDone: this.#isDone
+        };
+    }
+
+    static deserialize (data) {
+        const task = new Task(data.name);
+        if (data.isDone) task.done();
+        return task;
+    }
 }

@@ -1,6 +1,9 @@
 import Project from "./project";
 import Task from "./task";
 import Todo from "./todo";
+import { loadProjects } from "./localstorage";
+import { refreshDisplay } from "./displayProject";
+
 let projects = [];
 
 export function addProject(name) {
@@ -26,20 +29,9 @@ export function getProjects() {
     return projects;
 }
 
+window.addEventListener('load', () => {
+    const loadedProjects = loadProjects();
+    loadedProjects.forEach(project => {projects.push(project)});
+    refreshDisplay();
+});
 
-const task = new Task('wipe')
-task.done();
-const date = new Date('12-31-22');
-const todo = new Todo('title', 'descr', date, 1, 'notes')
-const project = new Project('project 1');
-
-
-
-todo.addToCheckList(task);
-
-
-
-project.addTodo(todo);
-
-
-projects.push(project)

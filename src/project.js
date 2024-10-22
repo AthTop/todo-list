@@ -1,25 +1,33 @@
-// project object
-// should contain todos, could possibly be a list instead of object
-// default project on app start
-// ability to create new projects and name them 
-// choose which project to add todos to
+import Todo from "./todo";
 
 export default class Project {
     #name;
-    #todoList;
+    #toDoList;
 
     constructor(projectName = '') {
         this.#name = projectName;
-        this.#todoList = [];
+        this.#toDoList = [];
     }
 
     getName() { return this.#name; }
     setName(name) { this.#name = name; }
 
-    getTodos() { return this.#todoList; }
-    addTodo(todo) { this.#todoList.push(todo); }
+    getTodos() { return this.#toDoList; }
+    addTodo(todo) { this.#toDoList.push(todo); }
     removeTodo(todo) { 
-        this.#todoList = this.#todoList.filter(item => item.getTitle() !== todo)
+        this.#toDoList = this.#toDoList.filter(item => item.getTitle() !== todo)
     }
 
+    serialize () {
+        return {
+            name: this.#name, 
+            todoList: this.#toDoList.map(todo => todo.serialize())
+        };
+    }
+
+    static deserialize (data) {
+        const project = new Project(data.name);
+        project.#toDoList = data.todoList.map(toDoData => Todo.deserialize(toDoData));
+        return project;
+    }
 };

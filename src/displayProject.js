@@ -1,6 +1,7 @@
 import displayTodo from "./displayTodo";
 import { newTodoForm, showEditProjectForm } from "./formHandler.js";
-import { deleteProject, updateProjectName, getProjects } from "./projectManager.js";
+import { deleteProject , getProjects } from "./projectManager.js";
+import { saveProjects } from "./localstorage.js";
 
 export default function displayProject(project) {
     const div = document.createElement('div');
@@ -48,5 +49,6 @@ export function refreshDisplay() {
     for (const project of projects) {
         projectsDiv.appendChild(displayProject(project, updateProjectName));
     };
+    saveProjects(projects);
 }
 
