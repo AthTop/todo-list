@@ -1,6 +1,6 @@
 import displayTodo from "./displayTodo";
 import { newTodoForm, showEditProjectForm } from "./formHandler.js";
-import { deleteProject , getProjects } from "./projectManager.js";
+import { deleteProject , getProjects, updateProjectName } from "./projectManager.js";
 import { saveProjects } from "./localstorage.js";
 
 export default function displayProject(project) {

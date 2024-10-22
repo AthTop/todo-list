@@ -1,6 +1,4 @@
 import Project from "./project";
-import Task from "./task";
-import Todo from "./todo";
 import { loadProjects } from "./localstorage";
 import { refreshDisplay } from "./displayProject";
 
