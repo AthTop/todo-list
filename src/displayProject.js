@@ -1,5 +1,5 @@
 import displayTodo from "./displayTodo";
-import { newTodoForm, showEditProjectForm } from "./formHandler.js";
+import { newProjectForm, newTodoForm, showEditProjectForm } from "./formHandler.js";
 import { deleteProject , getProjects, updateProjectName } from "./projectManager.js";
 import { saveProjects } from "./localstorage.js";
 
@@ -18,13 +18,12 @@ export default function displayProject(project) {
     };
     // Add an Edit project name button
     const editNameBtn = document.createElement('button');
-    editNameBtn.textContent = 'Edit Project Name';
+    editNameBtn.textContent = 'Project Name';
     editNameBtn.addEventListener('click', () => showEditProjectForm(project));
     editNameBtn.classList.add("edit-project-button");
-    div.appendChild(editNameBtn);
     // Add a Delete button
     const deleteProjectBtn = document.createElement('button');
-    deleteProjectBtn.textContent = 'X';
+    deleteProjectBtn.textContent = 'Remove Project';
     deleteProjectBtn.classList.add('delete-project-button');
     deleteProjectBtn.addEventListener('click', () => {
         if(confirm(`Are you sure you want to remove project ${project.getName()}?`)) {
@@ -32,13 +31,14 @@ export default function displayProject(project) {
             refreshDisplay();
         }
     });
-    div.appendChild(deleteProjectBtn);
     // Add a new Todo button
     const newTodoBtn = document.createElement('button');
     newTodoBtn.textContent = 'Add Todo';
     newTodoBtn.classList.add('new-todo-button');
     newTodoBtn.addEventListener('click', (e) => newTodoForm(project))
-    div.appendChild(newTodoBtn);
+    const buttonsDiv = document.createElement('div');
+    buttonsDiv.append(editNameBtn, deleteProjectBtn, newTodoBtn);
+    div.appendChild(buttonsDiv);
     return div;
 }
 

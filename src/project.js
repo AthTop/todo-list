@@ -15,7 +15,7 @@ export default class Project {
     getTodos() { return this.#toDoList; }
     addTodo(todo) { this.#toDoList.push(todo); }
     removeTodo(todo) { 
-        this.#toDoList = this.#toDoList.filter(item => item.getTitle() !== todo)
+        this.#toDoList = this.#toDoList.filter(item => item.getTitle() !== todo.getTitle())
     }
 
     serialize () {

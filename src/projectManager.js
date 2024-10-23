@@ -2,7 +2,8 @@ import Project from "./project";
 import { loadProjects } from "./localstorage";
 import { refreshDisplay } from "./displayProject";
 
-let projects = [];
+
+export let projects = [];
 
 export function addProject(name) {
     if (!name) throw new Error("Project name cannot be empty");

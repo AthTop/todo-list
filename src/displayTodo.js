@@ -1,7 +1,8 @@
 import { format } from "date-fns";
 import displayTasks from "./displayTasks";
-import { getProjects } from './projectManager';
+import { projects } from "./projectManager";
 import { newTaskForm, showEditProjectForm, showEditTodoForm } from "./formHandler";
+import { refreshDisplay } from "./displayProject";
 
 export default function displayTodo(todo) {
     const div = document.createElement('div');
@@ -12,10 +13,10 @@ export default function displayTodo(todo) {
     editBtn.addEventListener('click', () => showEditTodoForm(todo));
     const expandBtn = document.createElement('button');
     expandBtn.classList.add('expand-todo-button');
-    expandBtn.textContent = 'v';
+    expandBtn.textContent = 'Expand';
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('delete-todo-button');
-    deleteBtn.textContent = 'X';
+    deleteBtn.textContent = 'Delete Todo';
     div.setAttribute('priority', todo.getPriority());
     div.classList.add('todo');
     div.setAttribute('data-id', todo.getTitle());
@@ -48,12 +49,14 @@ export default function displayTodo(todo) {
     newTaskBtn.textContent = 'New task';
     newTaskBtn.classList.add('new-task-btn');
     newTaskBtn.addEventListener('click', (e) => newTaskForm(todo))
-    div.append(title, description, dueDate, notes, checklist, editBtn, expandBtn, deleteBtn, newTaskBtn);
+    const buttonsDiv = document.createElement('div');
+    buttonsDiv.append(editBtn, expandBtn, deleteBtn, newTaskBtn);
+    div.append(title, description, dueDate, notes, checklist, buttonsDiv);
     return div;
 }
 
 function expandTodo(expandBtn) {
-    let children = expandBtn.parentElement.childNodes;
+    let children = expandBtn.parentElement.parentElement.childNodes;
     for (const child of children) {
         if (child.classList.contains('hidden')) {
             child.classList.remove('hidden');
@@ -68,20 +71,20 @@ function expandTodo(expandBtn) {
 }
 
 function deleteTodo(todoBtn) {
-    const todoDiv = todoBtn.parentElement;
+    const todoDiv = todoBtn.parentElement.parentElement;
     const projectDiv = todoDiv.closest('.project');
 
     const projectId = projectDiv.id;
     const todoId = todoDiv.getAttribute('data-id');
 
     todoDiv.remove();
-    const projects = getProjects();
     const project = projects.find(proj => proj.getName() === projectId);
 
     if (project) {
         const todo = project.getTodos().find(todo => todo.getTitle() === todoId);
         if (todo) {
             project.removeTodo(todo);
+            refreshDisplay();
         }
     }
 }

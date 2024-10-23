@@ -19,7 +19,7 @@ export default function displayTasks(todo) {
         // Remove task button
         const removeTaskBtn = document.createElement('button');
         removeTaskBtn.type = 'button';
-        removeTaskBtn.textContent = 'X';
+        removeTaskBtn.textContent = 'Delete Task';
         removeTaskBtn.classList.add('remove-task-button');
         removeTaskBtn.addEventListener('click', () => {
             todo.removeFromCheckList(task);
