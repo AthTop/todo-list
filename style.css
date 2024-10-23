@@ -1,21 +1,68 @@
-[priority='1'] {
-    /* background: red; */
+[priority='Low'] {
+    background-color: rgba(0, 126, 0, 0.5);
+}
+
+[priority='Medium'] {
+    background-color: rgba(126, 126, 0, 0.5);
+}
+
+[priority='High'] {
+    background-color: rgba(126, 0, 0, 0.5);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #eeeeee;
+    padding: 5px;
 }
 
 .project {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    text-transform: capitalize;
+    background: #EEDDDD;
+    min-width: 250px;
+    width: max-content;
+    padding: 5px;
+    line-height: 1.6;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-left: 10px solid #054d05;
+    gap: 5px;
 }
 
 main {
     display: flex;
+}
+
+#projects-div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 10px;
+}
+
+button {
+    width: max-content;
+    height: 24px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background-color: #CCDDCC;
+    box-shadow: 2px 1px 2px 0;
+}
+
+button:active {
+    box-shadow: none;
 }
 
 .todo {
     display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: 1fr auto;
     gap: 5px;
-    width: 100%;
+    align-items: center;
+    border: 2px solid #054d05;
+    border-radius: 10px;
+    padding: 5px;
 }
 
 .todo ul {
@@ -41,4 +88,24 @@ main {
 
 .hidden {
     display: none;
+}
+
+dialog[open] {
+    border: none;
+    background-color: #DDEEEE;
+    border: 1px solid black;
+    border-radius: 5px;
+    position: fixed;
+    top: -50%;
+}
+
+dialog form {
+    display: grid;
+    padding: 20px;
+    gap: 5px;
+}
+
+
+::backdrop {
+    background: #eeeeee99;
 }
