@@ -1,9 +1,5 @@
 import displayTodo from './displayTodo'
-import {
-    newProjectForm,
-    newTodoForm,
-    showEditProjectForm,
-} from './formHandler.js'
+import { newTodoForm, showEditProjectForm } from './formHandler.js'
 import {
     deleteProject,
     getProjects,
@@ -47,7 +43,7 @@ export default function displayProject(project) {
     const newTodoBtn = document.createElement('button')
     newTodoBtn.textContent = 'Add Todo'
     newTodoBtn.classList.add('new-todo-button')
-    newTodoBtn.addEventListener('click', (e) => newTodoForm(project))
+    newTodoBtn.addEventListener('click', () => newTodoForm(project))
     const buttonsDiv = document.createElement('div')
     buttonsDiv.append(editNameBtn, deleteProjectBtn, newTodoBtn)
     div.appendChild(buttonsDiv)

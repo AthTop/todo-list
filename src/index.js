@@ -6,7 +6,7 @@ projectsDiv.id = 'projects-div'
 main.appendChild(projectsDiv)
 const newProjectBtn = document.createElement('button')
 newProjectBtn.textContent = 'New Project'
-newProjectBtn.addEventListener('click', (e) => {
+newProjectBtn.addEventListener('click', () => {
     newProjectForm()
 })
 main.appendChild(newProjectBtn)

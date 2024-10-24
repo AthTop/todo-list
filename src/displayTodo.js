@@ -1,11 +1,7 @@
 import { format } from 'date-fns'
 import displayTasks from './displayTasks'
 import { projects } from './projectManager'
-import {
-    newTaskForm,
-    showEditProjectForm,
-    showEditTodoForm,
-} from './formHandler'
+import { newTaskForm, showEditTodoForm } from './formHandler'
 import { refreshDisplay } from './displayProject'
 
 export default function displayTodo(todo) {
@@ -52,7 +48,7 @@ export default function displayTodo(todo) {
     newTaskBtn.type = 'button'
     newTaskBtn.textContent = 'New task'
     newTaskBtn.classList.add('new-task-btn')
-    newTaskBtn.addEventListener('click', (e) => newTaskForm(todo))
+    newTaskBtn.addEventListener('click', () => newTaskForm(todo))
     const buttonsDiv = document.createElement('div')
     buttonsDiv.append(editBtn, expandBtn, deleteBtn, newTaskBtn)
     div.append(title, description, dueDate, notes, checklist, buttonsDiv)
